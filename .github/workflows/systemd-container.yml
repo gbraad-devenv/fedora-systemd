@@ -1,0 +1,21 @@
+name: test systemd container
+run-name: test systemd container
+on:
+  workflow_dispatch:
+jobs:
+  verify-devcontainer:
+    runs-on: ubuntu-24.04
+    container:
+      image: ghcr.io/gbraad-devenv/fedora/systemd:41
+      options: --privileged
+      env:
+        HELLO: world
+    steps:
+      - name: Sleep 10
+        run: sleep 10
+      - name: Check systemctl
+        run: systemctl status
+      - name: Sleep 10
+        run: sleep 10
+      - name: Check systemctl
+        run: systemctl status
